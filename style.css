@@ -1,1 +1,38 @@
-/* todo */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background-color: moccasin;
+    overflow: hidden;
+}
+
+#buttons {
+    display: flex;
+    height: 5vh;
+    width: 90vw;
+    margin: auto;
+    justify-content: space-around;
+    align-items: center;
+}
+
+#desk {
+    position: relative;
+    height: 90vh;
+    width: 90vw;
+    margin: auto;
+    border: 1px solid black;
+    box-shadow: 3px 3px 5px grey;
+    background-color: white;
+}
+
+.block {
+    position: absolute;
+    border: 1px solid black;
+}
+
+.active {
+    outline: medium ridge red;
+    z-index: 3;
+}
