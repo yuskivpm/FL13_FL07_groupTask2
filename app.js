@@ -13,7 +13,8 @@ let mainBlock;
 let lastBlockColor = blockColorPicker.value;
 let lastChosenBlock;
 
-const getDeskSize = () => ({width: deskElement.clientWidth, height: deskElement.clientHeight});
+
+const getDeskSize = () => ({ left: 0, top: 0, width: deskElement.clientWidth, height: deskElement.clientHeight });
 
 class Block {
     constructor({width, height}) {
@@ -80,6 +81,34 @@ class Block {
         this.htmlElement.style.height = `${this.height}px`;
         this.htmlElement.style.width = `${this.width}px`;
     }
+
+  createElement(left, top) {
+    this.htmlElement = document.createElement('div');
+    this.htmlElement.className = 'block';
+    this.htmlElement.addEventListener('click', handleClick);
+    this.setElementPosition(left, top);
+    return this.htmlElement;
+  }
+  setElementPosition(left, top) {
+    this.htmlElement.style.top = `${top}px`;
+    this.htmlElement.style.left = `${left}px`;
+    this.htmlElement.style.height = `${this.height}px`;
+    this.htmlElement.style.width = `${this.width}px`;
+  }
+  resizeDesk({ left, top, width = this.width, height = this.height }) {
+    this.width = width;
+    this.height = height;
+    if (this.leftBlock) {
+      this.updateChildrenSize();
+      this.leftBlock.resizeDesk({ left, top });
+      this.rightBlock.resizeDesk({
+        left: left + (this.verticalSplit ? this.leftBlock.width : 0),
+        top: top + (this.verticalSplit ? 0 : this.leftBlock.height)
+      });
+    } else {
+      this.setElementPosition(left, top);
+    }
+  }
 }
 
 function generateMap() {
@@ -141,4 +170,7 @@ function repaintGrid() {
     })
 }
 
+window.addEventListener('resize', () => mainBlock.resizeDesk(getDeskSize()));
+
 generateMap();
+
