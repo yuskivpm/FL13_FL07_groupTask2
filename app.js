@@ -11,6 +11,7 @@ const realBlockCountInput = document.getElementById('realBlockCount');
 
 let mainBlock;
 let lastBlockColor = blockColorPicker.value;
+let lastChosenBlock;
 
 const getDeskSize = () => ({ width: deskElement.clientWidth, height: deskElement.clientHeight });
 
@@ -62,7 +63,7 @@ class Block {
   createElement(left, top) {
     this.htmlElement = document.createElement('div');
     this.htmlElement.className = 'block';
-    this.htmlElement.addEventListener('click', handleClick);
+    this.htmlElement.addEventListener('click', (e) => handleClick(e));
     this.setElementPosition(left, top);
     return this.htmlElement;
   }
@@ -101,7 +102,12 @@ function generateMap() {
   repaintGrid();
 }
 
-function handleClick() {
+function handleClick(event) {
+  if (lastChosenBlock) {
+    lastChosenBlock.classList = 'block';
+  }
+  event.target.classList = 'active block';
+  lastChosenBlock = event.target;
 }
 
 function changeBlockColor() {
