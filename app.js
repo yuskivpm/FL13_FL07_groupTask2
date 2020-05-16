@@ -21,7 +21,7 @@ const getDeskSize = () => ({
   height: deskElement.clientHeight
 });
 
-deskElement.addEventListener('click', (e) => handleClick(e));
+deskElement.addEventListener('click', handleClick);
 
 class Block {
   constructor({ width, height }) {
@@ -158,17 +158,46 @@ function handleClick({ shiftKey, ctrlKey, target: { id, classList: targetClassLi
 
 function changeBlockColor() {
   const backgroundColor = blockColorPicker.value;
-  document.querySelectorAll('.active').forEach(({ style }) => {
-    style.backgroundColor = backgroundColor;
-  });
+  paintActiveBlocks(backgroundColor);
   addToPalette(backgroundColor);
 }
 
+function paintActiveBlocks(backgroundColor) {
+  document.querySelectorAll('.active').forEach(({ style }) => {
+    style.backgroundColor = backgroundColor;
+  });
+}
+
+function hexToRgb(hexColor) {
+  const FF = 255;
+  const F = 16;
+  const RED = 8;
+  const intColor = parseInt(hexColor.slice(1), F);
+  const red = intColor >> F & FF;
+  const green = intColor >> RED & FF;
+  const blue = intColor & FF;
+  return `rgb(${red}, ${green}, ${blue})`;
+}
+
 function addToPalette(color) {
-  const bottle = paletteHolder.appendChild(document.createElement('div'));
-  bottle.className = 'palette-block';
-  bottle.style.backgroundColor = color;
-  reorderPalette();
+  const rgbColor = hexToRgb(color);
+  const existBottle = Array.prototype.find.call(
+    paletteHolder.children,
+    ({ style: { backgroundColor } }) => backgroundColor === rgbColor
+  );
+  if (existBottle) {
+    paletteHolder.appendChild(existBottle);
+  } else {
+    const bottle = paletteHolder.appendChild(document.createElement('div'));
+    bottle.className = 'palette-block';
+    bottle.style.backgroundColor = color;
+    bottle.addEventListener('click', handlePaletteClick);
+    reorderPalette();
+  }
+}
+
+function handlePaletteClick({ target: { style: { backgroundColor } } }) {
+  paintActiveBlocks(backgroundColor);
 }
 
 window.addEventListener('resize', () => mainBlock.resizeDesk(getDeskSize()));
