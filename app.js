@@ -111,6 +111,9 @@ function handleClick(event) {
 }
 
 function changeBlockColor() {
+  document.querySelectorAll(".active").forEach(el => {
+    el.style.backgroundColor = blockColorPicker.value;
+  })
 }
 
 function paintBlock(blockElement) {
