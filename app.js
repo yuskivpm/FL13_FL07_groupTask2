@@ -130,7 +130,7 @@ function paintBlock(blockElement) {
 }
 
 function repaintGrid() {
-    gridColorPicker.addEventListener('input', e => {
+        gridColorPicker.addEventListener('input', e => {
         e.preventDefault()
         const blocks = document.getElementsByClassName('block')
         const desk = document.getElementById('desk')
