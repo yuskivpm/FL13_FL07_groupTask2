@@ -14,8 +14,14 @@ const paletteHolder = document.getElementById('palette');
 let mainBlock;
 let maxPaletteCount;
 
+const getDeskSize = () => ({
+  left: 0,
+  top: 0,
+  width: deskElement.clientWidth,
+  height: deskElement.clientHeight
+});
 
-const getDeskSize = () => ({ left: 0, top: 0, width: deskElement.clientWidth, height: deskElement.clientHeight });
+deskElement.addEventListener('click', (e) => handleClick(e));
 
 class Block {
   constructor({ width, height }) {
@@ -71,7 +77,6 @@ class Block {
   createElement(left, top) {
     this.htmlElement = document.createElement('div');
     this.htmlElement.className = 'block';
-    this.htmlElement.addEventListener('click', (e) => handleClick(e));
     this.setElementPosition(left, top);
     return this.htmlElement;
   }
@@ -142,11 +147,13 @@ function reorderPalette() {
   }
 }
 
-function handleClick({ shiftKey, ctrlKey, target: { classList: targetClassList } }) {
-  if (!shiftKey && !ctrlKey) {
-    deskElement.querySelectorAll('.active').forEach(({ classList }) => classList.remove('active'));
+function handleClick({ shiftKey, ctrlKey, target: { id, classList: targetClassList } }) {
+  if (id !== 'desk') {
+    if (!shiftKey && !ctrlKey) {
+      deskElement.querySelectorAll('.active').forEach(({ classList }) => classList.remove('active'));
+    }
+    targetClassList.add('active');
   }
-  targetClassList.add('active');
 }
 
 function changeBlockColor() {
