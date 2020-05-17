@@ -162,7 +162,7 @@ function reorderPalette() {
 }
 
 function handleClick({ shiftKey, ctrlKey, target: { id, classList: targetClassList } }) {
-  if (id !== 'desk') {
+  if (id !== 'game-panel__desk') {
     if (!shiftKey && !ctrlKey) {
       deskElement.querySelectorAll('.active').forEach(({ classList }) => classList.remove('active'));
     }
