@@ -9,6 +9,9 @@ const blockColorPicker = document.getElementById('blockColor');
 const gridColorPicker = document.getElementById('gridColor');
 const blockCountInput = document.getElementById('blockCount');
 const realBlockCountInput = document.getElementById('realBlockCount');
+const additionalFeaturesBlock = document.getElementById('additionalFeaturesBlock');
+const additionalFeatures = document.getElementById('additionalFeatures');
+const paletteWholeBlock = document.getElementById('featurePalette');
 const paletteHolder = document.getElementById('palette');
 const randomizeBlockCountCheckbox = document.getElementById('randomizeBlockCount');
 const settingsMenu = document.getElementById('featuresInputsInfo');
@@ -208,10 +211,14 @@ function handlePaletteClick({ target: { style: { backgroundColor } } }) {
 }
 
 function showSettings() {
-  if (settingsMenu.style.display === 'block' || settingsMenu.style.display === '') {
-    settingsMenu.style.display = 'none'
+  if (settingsMenu.style.display === 'block') {
+    settingsMenu.style.display = 'none';
+    paletteWholeBlock.style.margin = '0';
+    additionalFeatures.style.justifyContent = 'flex-end';
   } else {
-    settingsMenu.style.display = 'block'
+    settingsMenu.style.display = 'block';
+    paletteWholeBlock.style.marginRight = '40px';
+    additionalFeatures.style.justifyContent = 'space-between';
   }
 }
 
