@@ -28,12 +28,16 @@
         </div>
         <div id="additionalFeaturesBlock">
             <div id="additionalFeaturesBlockHeader">
-                <h4 id="additionalFeaturesBlockHeaderText">Additional features</h4>
+                <button id="burger" onclick="showSettings()">☰</button>
             </div>
             <div id="additionalFeatures">
-                <div class="featuresInputsInfo">
+                <div id="featurePalette">
+                    <h5 id="featurePaletteHeader" class="featuresHeader">Color palette</h5>
+                    <div id="palette"></div>
+                </div>
+                <div id="featuresInputsInfo">
                     <div id="featuresInputs" class="featuresInputsInfoBlock">
-                        <h5 id="featuresInputsHeader" class="featuresHeader">Inputs</h5>
+                        <h5 id="featuresInputsHeader" class="featuresHeader">Settings</h5>
                         <label>
                             <div>Max count</div>
                             <input type="number" id="blockCount" value="100" min="10" max="40000">
@@ -55,10 +59,6 @@
                             <p>Select a block and click on a color in the palette to quickly paint this block</p>
                         </div>
                     </div>
-                </div>
-                <div id="featurePalette">
-                    <h5 id="featurePaletteHeader" class="featuresHeader">Color palette</h5>
-                    <div id="palette"></div>
                 </div>
             </div>
         </div>
