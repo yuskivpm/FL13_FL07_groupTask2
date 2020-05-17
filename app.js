@@ -117,7 +117,7 @@ class Block {
 }
 
 function getBlockCount(usersBlockCount) {
-  const maxBlockCount = Math.min(MAX_BLOCK_COUNT, Math.max(MIN_BLOCK_COUNT, usersBlockCount)) - MIN_BLOCK_COUNT;
+  const maxBlockCount = Math.min(MAX_BLOCK_COUNT, Math.max(MIN_BLOCK_COUNT, usersBlockCount));
   return randomizeBlockCountCheckbox.checked
     ? Math.floor(Math.random() * (maxBlockCount - MIN_BLOCK_COUNT)) + MIN_BLOCK_COUNT
     : maxBlockCount;
