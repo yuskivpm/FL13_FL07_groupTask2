@@ -173,6 +173,10 @@ function changeBlockColor() {
   const backgroundColor = blockColorPicker.value;
   paintActiveBlocks(backgroundColor);
   addToPalette(backgroundColor);
+  let rgbColorArr = rgbStringToRgbArray(hexToRgb(blockColorPicker.value));
+  let maximumValueIndex = rgbColorArr.indexOf(Math.max(...rgbColorArr));
+  rgbColorArr[maximumValueIndex] -= 1;
+  blockColorPicker.value = rgbToHex(rgbColorArr);
 }
 
 function paintActiveBlocks(backgroundColor) {
@@ -190,6 +194,23 @@ function hexToRgb(hexColor) {
   const green = intColor >> RED & FF;
   const blue = intColor & FF;
   return `rgb(${red}, ${green}, ${blue})`;
+}
+
+function rgbStringToRgbArray(rgbString) {
+  rgbString = rgbString.slice(rgbString.indexOf("(")+1, rgbString.indexOf(")"));
+  rgbArr = rgbString.split(", ").map(x => +x);
+  return rgbArr;
+}
+
+function rgbgArrayToRgbString(rgbArr) {
+  return `rgb(${rgbArr[0]}, ${rgbArr[1]}, ${rgbArr[2]})`
+}
+
+function rgbToHex(rgbArr) {
+  r = rgbArr[0];
+  g = rgbArr[1];
+  b = rgbArr[2];
+  return "#" + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1);
 }
 
 function addToPalette(color) {
