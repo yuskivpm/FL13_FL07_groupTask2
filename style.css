@@ -81,10 +81,6 @@ body {
     z-index: 3;
 }
 
-#featurePalette {
-    margin: 0;
-}
-
 #palette {
     display: flex;
     width: 100px;

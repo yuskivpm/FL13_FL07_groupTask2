@@ -12,14 +12,16 @@ const blockColorPicker = document.getElementById('block-color');
 const gridColorPicker = document.getElementById('grid-color');
 const blockCountInput = document.getElementById('blockCount');
 const realBlockCountInput = document.getElementById('realBlockCount');
+const generatingMapButton = document.querySelector('.generate-button');
+const randomizeBlockCountCheckbox = document.getElementById('randomizeBlockCount');
+const paletteHolder = document.getElementById('palette');
+
+const settingsMenuBurger = document.getElementById('burger');
+
 const additionalFeatures = document.getElementById('additionalFeatures');
 const paletteWholeBlock = document.getElementById('featurePalette');
-const paletteHolder = document.getElementById('palette');
-const randomizeBlockCountCheckbox = document.getElementById('randomizeBlockCount');
 const settingsMenu = document.getElementById('featuresInputsInfo');
 const generateMosaicBlock = document.getElementById('game-panel');
-const settingsMenuBurger = document.getElementById('burger');
-const generatingMapButton = document.querySelector('.generate-button');
 
 let mainBlock;
 
