@@ -16,10 +16,10 @@ body {
 
 #root {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     width: 100vw;
     height: 100vh;
-    padding: 10px;
+    padding: 10px 50px;
     flex-wrap: wrap;
 }
 
@@ -56,7 +56,7 @@ body {
 
 #generateMosaicBlock {
     height: calc(100vh - 70px);
-    width: calc(100vw - 450px);
+    width: calc(100vw - 255px);
 }
 
 #desk {
@@ -138,7 +138,7 @@ body {
 }
 
 #featuresInputsHeader {
-    margin-top: 20px;
+    margin-top: 15px;
 }
 
 #headerInputs {

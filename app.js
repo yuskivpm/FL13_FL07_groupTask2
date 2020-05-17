@@ -9,7 +9,6 @@ const blockColorPicker = document.getElementById('blockColor');
 const gridColorPicker = document.getElementById('gridColor');
 const blockCountInput = document.getElementById('blockCount');
 const realBlockCountInput = document.getElementById('realBlockCount');
-const additionalFeaturesBlock = document.getElementById('additionalFeaturesBlock');
 const additionalFeatures = document.getElementById('additionalFeatures');
 const paletteWholeBlock = document.getElementById('featurePalette');
 const paletteHolder = document.getElementById('palette');
@@ -247,10 +246,14 @@ function showSettings() {
     settingsMenu.style.display = 'none';
     paletteWholeBlock.style.margin = '0';
     additionalFeatures.style.justifyContent = 'flex-end';
+    generateMosaicBlock.style.width = 'calc(100vw - 255px)';
+    mainBlock.resizeDesk(getDeskSize());
   } else {
     settingsMenu.style.display = 'block';
     paletteWholeBlock.style.marginRight = '40px';
     additionalFeatures.style.justifyContent = 'space-between';
+    generateMosaicBlock.style.width = 'calc(100vw - 450px)';
+    mainBlock.resizeDesk(getDeskSize());
   }
 }
 
