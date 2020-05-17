@@ -14,21 +14,21 @@
             <div id="generateMosaicBlockHeader">
                 <div id="headerInputs">
                     <label id="gridColorContainer">
-                        <input type="color" value="#A5A5A5" id="gridColor" onchange="repaintGrid()">
+                        <input type="color" value="#A5A5A5" id="gridColor">
                         Mosaic border color
                     </label>
                     <label>
-                        <input type="color" value="#FFFFFF" id="blockColor" onchange="changeBlockColor()">
+                        <input type="color" value="#FFFFFF" id="blockColor">
                         Fragment background color
                     </label>
                 </div>
-                <input type="button" value="Generate New" class="button" onclick="generateMap()">
+                <input type="button" value="Generate New" class="button">
             </div>
             <div id="desk"></div>
         </div>
         <div id="additionalFeaturesBlock">
             <div id="additionalFeaturesBlockHeader">
-                <button id="burger" onclick="showSettings()">☰</button>
+                <button id="burger">☰</button>
             </div>
             <div id="additionalFeatures">
                 <div id="featurePalette">
@@ -37,22 +37,22 @@
                 </div>
                 <div id="featuresInputsInfo">
                     <div id="featuresInputs" class="featuresInputsInfoBlock">
-                        <h5 id="featuresInputsHeader" class="featuresHeader">Settings</h5>
+                        <h5 class="featuresHeader">Settings</h5>
                         <label>
-                            <div>Max count</div>
+                            <span>Max count</span>
                             <input type="number" id="blockCount" value="100" min="10" max="40000">
                         </label>
                         <label>
-                            <div>Real fragments count</div>
+                            <span>Real fragments count</span>
                             <input type="number" id="realBlockCount" readonly>
                         </label>
                         <label>
-                            <div>Randomize block count</div>
+                            <span>Randomize block count</span>
                             <input type="checkbox" id="randomizeBlockCount">
                         </label>
                     </div>
                     <div id="featuresInfo" class="featuresInputsInfoBlock">
-                        <h5 id="featuresInputsHeader" class="featuresHeader">Info</h5>
+                        <h5 class="featuresHeader">Info</h5>
                         <div id="featuresInfoText">
                             <p>Press Shift or Ctrl + left click to select several blocks</p>
                             <p>Each selected color will be displayed in the color palette</p>

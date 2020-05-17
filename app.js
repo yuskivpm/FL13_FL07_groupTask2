@@ -13,6 +13,9 @@ const paletteHolder = document.getElementById('palette');
 const randomizeBlockCountCheckbox = document.getElementById('randomizeBlockCount');
 const settingsMenu = document.getElementById('featuresInputsInfo');
 const generateMosaicBlock = document.getElementById('generateMosaicBlock');
+const settingsMenuBurger = document.getElementById('burger');
+const generatingMapButton = document.querySelector('.button');
+
 
 let mainBlock;
 let maxPaletteCount;
@@ -218,3 +221,8 @@ function showSettings() {
 window.addEventListener('resize', () => mainBlock.resizeDesk(getDeskSize()));
 
 generateMap();
+
+settingsMenuBurger.addEventListener('click', showSettings);
+gridColorPicker.addEventListener('change', repaintGrid);
+blockColorPicker.addEventListener('change', changeBlockColor);
+generatingMapButton.addEventListener('click', generateMap);
