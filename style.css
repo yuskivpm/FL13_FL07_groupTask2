@@ -80,7 +80,7 @@ body {
 }
 
 #additionalFeaturesBlock {
-    width: 20vw;
+    width: fit-content;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -96,7 +96,7 @@ body {
 }
 
 #featurePalette {
-    margin-right: 40px;
+    margin: 0;
 }
 
 #burger {
@@ -104,17 +104,28 @@ body {
     background-color: transparent;
     border: none;
     cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+#burgerHeader {
+    font-size: 14px;
+    padding: 1px 6px 0;
 }
 
 #additionalFeatures {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
     width: 100%;
 }
 
 #featuresInputs {
     display: flex;
     flex-direction: column;
+}
+
+#featuresInputsInfo {
+    display: none;
 }
 
 .featuresInputsInfoBlock {
@@ -126,9 +137,14 @@ body {
     margin: 5px 0 15px 0;
 }
 
+#featuresInputsHeader {
+    margin-top: 20px;
+}
+
 #headerInputs {
     display: flex;
     justify-content: space-between;
+    font-weight: bold;
 }
 
 .featuresHeader {
