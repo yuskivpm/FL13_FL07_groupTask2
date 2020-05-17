@@ -173,9 +173,17 @@ function changeBlockColor() {
   const backgroundColor = blockColorPicker.value;
   paintActiveBlocks(backgroundColor);
   addToPalette(backgroundColor);
+  changeBlockColorPickerValue()
+}
+
+function changeBlockColorPickerValue() {
   let rgbColorArr = rgbStringToRgbArray(hexToRgb(blockColorPicker.value));
   let maximumValueIndex = rgbColorArr.indexOf(Math.max(...rgbColorArr));
-  rgbColorArr[maximumValueIndex] -= 1;
+  if (Math.max(...rgbColorArr) !== 0) {
+    rgbColorArr[maximumValueIndex] -= 1;
+  } else {
+    rgbColorArr[maximumValueIndex] += 1;
+  }
   blockColorPicker.value = rgbToHex(rgbColorArr);
 }
 
