@@ -3,10 +3,13 @@ const MIN_BLOCK_COUNT = 9;
 const MAX_BLOCK_COUNT = 40000;
 const MIN_DIVIDE_RANGE = 2;
 const PALETTE_BLOCK_SIZE = 90;
+const HEX_FF = 255;
+const HEX_F = 16;
+const HEX_8 = 8;
 
-const deskElement = document.getElementById('desk');
-const blockColorPicker = document.getElementById('blockColor');
-const gridColorPicker = document.getElementById('gridColor');
+const deskElement = document.getElementById('game-panel__desk');
+const blockColorPicker = document.getElementById('block-color');
+const gridColorPicker = document.getElementById('grid-color');
 const blockCountInput = document.getElementById('blockCount');
 const realBlockCountInput = document.getElementById('realBlockCount');
 const additionalFeatures = document.getElementById('additionalFeatures');
@@ -14,13 +17,11 @@ const paletteWholeBlock = document.getElementById('featurePalette');
 const paletteHolder = document.getElementById('palette');
 const randomizeBlockCountCheckbox = document.getElementById('randomizeBlockCount');
 const settingsMenu = document.getElementById('featuresInputsInfo');
-const generateMosaicBlock = document.getElementById('generateMosaicBlock');
+const generateMosaicBlock = document.getElementById('game-panel');
 const settingsMenuBurger = document.getElementById('burger');
-const generatingMapButton = document.querySelector('.button');
-
+const generatingMapButton = document.querySelector('.generate-button');
 
 let mainBlock;
-let maxPaletteCount;
 
 const getDeskSize = () => ({
   left: 0,
@@ -29,7 +30,10 @@ const getDeskSize = () => ({
   height: deskElement.clientHeight
 });
 
-deskElement.addEventListener('click', handleClick);
+const parseHexColor = hexColor => hexColor.slice(1).match(/(.{2})/g).map(hex => parseInt(hex, HEX_F));
+const hexToRgb = hexColor => `rgb(${parseHexColor(hexColor).join(', ')})`;
+const hexWithLeadingZero = number => `${number < HEX_F ? '0' : ''}${number.toString(HEX_F)}`;
+const rgbToHex = rgbArray => rgbArray.reduce((hexColor, hex) => hexColor + hexWithLeadingZero(hex), '#');
 
 class Block {
   constructor({ width, height }) {
@@ -112,17 +116,18 @@ class Block {
   }
 }
 
+function getBlockCount(usersBlockCount) {
+  const maxBlockCount = Math.min(MAX_BLOCK_COUNT, Math.max(MIN_BLOCK_COUNT, usersBlockCount)) - MIN_BLOCK_COUNT;
+  return randomizeBlockCountCheckbox.checked
+    ? Math.floor(Math.random() * (maxBlockCount - MIN_BLOCK_COUNT)) + MIN_BLOCK_COUNT
+    : maxBlockCount;
+}
+
 function generateMap() {
   deskElement.innerHTML = '';
   mainBlock = new Block(getDeskSize(), '1');
   const usersBlockCount = isNaN(parseInt(blockCountInput.value)) ? MAX_BLOCK_COUNT : parseInt(blockCountInput.value);
-  let blockCount;
-  if (randomizeBlockCountCheckbox.checked) {
-    const maxBlockCount = Math.min(MAX_BLOCK_COUNT, Math.max(MIN_BLOCK_COUNT, usersBlockCount)) - MIN_BLOCK_COUNT;
-    blockCount = Math.floor(Math.random() * maxBlockCount) + MIN_BLOCK_COUNT;
-  } else {
-    blockCount = Math.min(MAX_BLOCK_COUNT, Math.max(MIN_BLOCK_COUNT, usersBlockCount));
-  }
+  let blockCount = getBlockCount(usersBlockCount);
   let realBlockCount = blockCount;
   let headBlock = mainBlock;
   let tailBlock = mainBlock;
@@ -153,7 +158,7 @@ function repaintGrid() {
 }
 
 function reorderPalette() {
-  maxPaletteCount = Math.floor(paletteHolder.clientHeight / PALETTE_BLOCK_SIZE);
+  const maxPaletteCount = Math.floor(paletteHolder.clientHeight / PALETTE_BLOCK_SIZE);
   while (paletteHolder.children.length > maxPaletteCount) {
     paletteHolder.children[0].remove();
   }
@@ -168,6 +173,10 @@ function handleClick({ shiftKey, ctrlKey, target: { id, classList: targetClassLi
   }
 }
 
+function handlePaletteClick({ target: { style: { backgroundColor } } }) {
+  paintActiveBlocks(backgroundColor);
+}
+
 function changeBlockColor() {
   const backgroundColor = blockColorPicker.value;
   paintActiveBlocks(backgroundColor);
@@ -175,44 +184,10 @@ function changeBlockColor() {
   changeBlockColorPickerValue()
 }
 
-function changeBlockColorPickerValue() {
-  let rgbColorArr = rgbStringToRgbArray(hexToRgb(blockColorPicker.value));
-  let maximumValueIndex = rgbColorArr.indexOf(Math.max(...rgbColorArr));
-  if (Math.max(...rgbColorArr) !== 0) {
-    rgbColorArr[maximumValueIndex] -= 1;
-  } else {
-    rgbColorArr[maximumValueIndex] += 1;
-  }
-  blockColorPicker.value = rgbToHex(rgbColorArr);
-}
-
 function paintActiveBlocks(backgroundColor) {
   document.querySelectorAll('.active').forEach(({ style }) => {
     style.backgroundColor = backgroundColor;
   });
-}
-
-function hexToRgb(hexColor) {
-  const FF = 255;
-  const F = 16;
-  const RED = 8;
-  const intColor = parseInt(hexColor.slice(1), F);
-  const red = intColor >> F & FF;
-  const green = intColor >> RED & FF;
-  const blue = intColor & FF;
-  return `rgb(${red}, ${green}, ${blue})`;
-}
-
-function rgbStringToRgbArray(rgbString) {
-  rgbString = rgbString.slice(rgbString.indexOf('(')+1, rgbString.indexOf(')'));
-  return rgbString.split(', ').map(x => +x);
-}
-
-function rgbToHex(rgbArr) {
-  let r = rgbArr[0];
-  let g = rgbArr[1];
-  let b = rgbArr[2];
-  return '#' + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1);
 }
 
 function addToPalette(color) {
@@ -232,8 +207,10 @@ function addToPalette(color) {
   }
 }
 
-function handlePaletteClick({ target: { style: { backgroundColor } } }) {
-  paintActiveBlocks(backgroundColor);
+function changeBlockColorPickerValue() {
+  const rgbArray = parseHexColor(blockColorPicker.value);
+  rgbArray[0] ? --rgbArray[0] : ++rgbArray[0];
+  blockColorPicker.value = rgbToHex(rgbArray);
 }
 
 function showSettings() {
@@ -259,11 +236,12 @@ function showSettings() {
   }
 }
 
-window.addEventListener('resize', () => mainBlock.resizeDesk(getDeskSize()));
-
 generateMap();
 
-settingsMenuBurger.addEventListener('click', showSettings);
+window.addEventListener('resize', () => mainBlock.resizeDesk(getDeskSize()));
+deskElement.addEventListener('click', handleClick);
 gridColorPicker.addEventListener('change', repaintGrid);
 blockColorPicker.addEventListener('change', changeBlockColor);
 generatingMapButton.addEventListener('click', generateMap);
+
+settingsMenuBurger.addEventListener('click', showSettings);

@@ -8,7 +8,7 @@
 
 body {
     margin: 0;
-    background-color: #F4F9F5;
+    background-color: #f4f9f5;
     overflow: hidden;
     font-family: Arial, Helvetica, sans-serif;
     font-size: 15px;
@@ -23,7 +23,7 @@ body {
     flex-wrap: wrap;
 }
 
-#generateMosaicBlockHeader {
+#game-panel__header {
     display: flex;
     width: 100%;
     height: 50px;
@@ -32,8 +32,23 @@ body {
     align-items: center;
 }
 
-.button {
-    background-color: #13D5AC;
+#settings {
+    display: flex;
+    justify-content: space-between;
+    font-weight: 600;
+    font-size: 13px;
+}
+
+#settings input {
+    margin-right: 10px;
+}
+
+#settings span {
+    margin-right: 40px;
+}
+
+.generate-button {
+    background-color: #13d5ac;
     color: white;
     border: none;
     padding: 5px 10px;
@@ -42,29 +57,17 @@ body {
     cursor: pointer;
 }
 
-#palette {
-    display: flex;
-    width: 100px;
-    height: calc(100vh - 105px);
-    padding: 10px 0;
-    flex-direction: column-reverse;
-    justify-content: flex-end;
-    align-items: center;
-    overflow: hidden;
-    background-color: #E63946;
-}
-
-#generateMosaicBlock {
+#game-panel {
     height: calc(100vh - 70px);
     width: calc(100vw - 255px);
 }
 
-#desk {
+#game-panel__desk {
     position: relative;
     width: 100%;
     height: 100%;
     margin: 0 10px 0 auto;
-    border: 1px solid #A5A5A5;
+    border: 1px solid #a5a5a5;
     background-color: white;
 }
 
@@ -77,6 +80,30 @@ body {
     outline: 1px ridge red;
     box-shadow: 0px 0px 5px red;
     z-index: 3;
+}
+
+#featurePalette {
+    margin: 0;
+}
+
+#palette {
+    display: flex;
+    width: 100px;
+    height: calc(100vh - 105px);
+    padding: 10px 0;
+    flex-direction: column-reverse;
+    justify-content: flex-end;
+    align-items: center;
+    overflow: hidden;
+    background-color: #e63946;
+}
+
+.palette-block {
+    width: 90px;
+    height: 90px;
+    margin-bottom: 10px;
+    border: 1px solid black;
+    border-radius: 50%;
 }
 
 #additionalFeaturesBlock {
@@ -92,10 +119,6 @@ body {
     align-items: center;
     justify-content: flex-end;
     height: 50px;
-    margin: 0;
-}
-
-#featurePalette {
     margin: 0;
 }
 
@@ -117,6 +140,11 @@ body {
     display: flex;
     justify-content: flex-end;
     width: 100%;
+}
+
+.featuresHeader {
+    margin: 0 0 20px 0;
+    text-align: center;
 }
 
 #featuresInputs {
@@ -141,36 +169,4 @@ body {
 
 #featuresInputsHeader {
     margin-top: 15px;
-}
-
-#headerInputs {
-    display: flex;
-    justify-content: space-between;
-    font-weight: 600;
-    font-size: 13px;
-}
-
-#headerInputs input {
-    margin-right: 10px;
-}
-
-#headerInputs span {
-    margin-right: 40px;
-}
-
-.featuresHeader {
-    margin: 0 0 20px 0;
-    text-align: center;
-}
-
-#gridColorContainer {
-    margin-right: 4vw;
-}
-
-.palette-block {
-    width: 90px;
-    height: 90px;
-    margin-bottom: 10px;
-    border: 1px solid black;
-    border-radius: 50%;
 }

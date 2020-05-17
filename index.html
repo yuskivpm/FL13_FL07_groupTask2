@@ -10,27 +10,27 @@
 
 <body>
     <div id=root>
-        <div id="generateMosaicBlock">
-            <div id="generateMosaicBlockHeader">
-                <div id="headerInputs">
+        <div id="game-panel">
+            <div id="game-panel__header">
+                <div>
                     <label>
-                        <input type="color" value="#A5A5A5" id="gridColor">
+                        <input type="color" value="#A5A5A5" id="grid-color">
                         <span>Mosaic border color</span>
                     </label>
                     <label>
-                        <input type="color" value="#FFFFFF" id="blockColor">
+                        <input type="color" value="#FFFFFF" id="block-color">
                         <span>Fragment background color</span>
                     </label>
                 </div>
-                <input type="button" value="Generate New" class="button">
+                <input type="button" value="Generate New" class="generate-button">
             </div>
-            <div id="desk"></div>
+            <div id="game-panel__desk"></div>
         </div>
         <div id="additionalFeaturesBlock">
             <div id="additionalFeaturesBlockHeader">
                 <button id="burger">
-	                <span id="burgerHeader">Settings</span>
-	                ☰
+                    <span id="burgerHeader">Settings</span>
+                    ☰
                 </button>
             </div>
             <div id="additionalFeatures">
@@ -53,14 +53,12 @@
                             <input type="checkbox" id="randomizeBlockCount">
                         </label>
                     </div>
-	                  <hr>
-                    <div id="featuresInfo" class="featuresInputsInfoBlock">
+                    <hr>
+                    <div class="featuresInputsInfoBlock">
                         <h5 id="featuresInputsHeader" class="featuresHeader">Info</h5>
-                        <div id="featuresInfoText">
-                            <p>Press Shift or Ctrl + left click to select several blocks</p>
-                            <p>Each selected color will be displayed in the color palette</p>
-                            <p>Select a block and click on a color in the palette to quickly paint this block</p>
-                        </div>
+                        <p>Press Shift or Ctrl + left click to select several blocks</p>
+                        <p>Each selected color will be displayed in the color palette</p>
+                        <p>Select a block and click on a color in the palette to quickly paint this block</p>
                     </div>
                 </div>
             </div>
