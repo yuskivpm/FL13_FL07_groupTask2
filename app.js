@@ -15,13 +15,8 @@ const realBlockCountInput = document.getElementById('realBlockCount');
 const generatingMapButton = document.querySelector('.generate-button');
 const randomizeBlockCountCheckbox = document.getElementById('randomizeBlockCount');
 const paletteHolder = document.getElementById('palette');
-
-const settingsMenuBurger = document.getElementById('burger');
-
-const additionalFeatures = document.getElementById('additionalFeatures');
-const paletteWholeBlock = document.getElementById('featurePalette');
 const settingsMenu = document.getElementById('featuresInputsInfo');
-const generateMosaicBlock = document.getElementById('game-panel');
+const settingsMenuBurger = document.getElementById('burger');
 
 let mainBlock;
 
@@ -216,26 +211,8 @@ function changeBlockColorPickerValue() {
 }
 
 function showSettings() {
-  const timeout = 30;
-
-  if (settingsMenu.style.opacity === '1') {
-    settingsMenu.style.display = 'none';
-    paletteWholeBlock.style.margin = '0';
-    additionalFeatures.style.justifyContent = 'flex-end';
-    generateMosaicBlock.style.width = 'calc(100vw - 255px)';
-    settingsMenu.style.opacity = '0';
-    mainBlock.resizeDesk(getDeskSize());
-  } else {
-    settingsMenu.style.display = 'block';
-    settingsMenu.style.width = '100%';
-    paletteWholeBlock.style.marginRight = '40px';
-    additionalFeatures.style.justifyContent = 'space-between';
-    generateMosaicBlock.style.width = 'calc(100vw - 450px)';
-    setTimeout(function () {
-      settingsMenu.style.opacity = '1';
-    }, timeout);
-    mainBlock.resizeDesk(getDeskSize());
-  }
+  settingsMenu.classList.toggle('visible');
+  mainBlock.resizeDesk(getDeskSize());
 }
 
 generateMap();
@@ -245,5 +222,4 @@ deskElement.addEventListener('click', handleClick);
 gridColorPicker.addEventListener('change', repaintGrid);
 blockColorPicker.addEventListener('change', changeBlockColor);
 generatingMapButton.addEventListener('click', generateMap);
-
 settingsMenuBurger.addEventListener('click', showSettings);

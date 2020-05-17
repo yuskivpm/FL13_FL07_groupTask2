@@ -76,16 +76,55 @@ body {
     z-index: 3;
 }
 
+#additionalFeaturesBlock {
+    width: fit-content;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+    padding-bottom: 20px;
+}
+#burger {
+    font-size: 20px;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    align-self: flex-end;
+    margin-bottom: 20px;
+}
+
+#additionalFeatures {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+    height: calc(100% - 50px);
+    overflow: hidden;
+}
+
+#featurePalette {
+    width: 120px;
+    height: 100%;
+    padding: 0 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.featuresHeader {
+    margin: 15px 0 20px 0;
+    text-align: center;
+}
+
 #palette {
     display: flex;
-    width: 100px;
-    height: calc(100vh - 105px);
+    width: 100%;
+    height: 100%;
     padding: 10px 0;
     flex-direction: column-reverse;
     justify-content: flex-end;
     align-items: center;
     overflow: hidden;
-    background-color: #e63946;
+    border: 1px solid darkgray;
 }
 
 .palette-block {
@@ -94,47 +133,26 @@ body {
     margin-bottom: 10px;
     border: 1px solid black;
     border-radius: 50%;
+    box-shadow: 5px 5px 3px grey;
 }
 
-#additionalFeaturesBlock {
-    width: fit-content;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+@keyframes info {
+    from {
+        transform: translateX(100%);
+    }
+    to {
+        transform: translateX(0%);
+    }
 }
 
-#additionalFeaturesBlockHeader {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    height: 50px;
-    margin: 0;
+#featuresInputsInfo.visible {
+    display: block;
+    animation: info 0.5s linear;
 }
 
-#burger {
-    font-size: 20px;
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-}
-
-#burgerHeader {
-    font-size: 14px;
-    padding: 1px 6px 0;
-}
-
-#additionalFeatures {
-    display: flex;
-    justify-content: flex-end;
-    width: 100%;
-}
-
-.featuresHeader {
-    margin: 0 0 20px 0;
-    text-align: center;
+#featuresInputsInfo {
+    display: none;
+    width: 170px;
 }
 
 #featuresInputs {
@@ -142,21 +160,7 @@ body {
     flex-direction: column;
 }
 
-#featuresInputsInfo {
-    display: none;
-    opacity: 0;
-    transition: all 2s ease 0s;
-}
-
-.featuresInputsInfoBlock {
-    width: 170px;
-}
-
 #featuresInputs input {
     width: 100%;
     margin: 5px 0 15px 0;
-}
-
-#featuresInputsHeader {
-    margin-top: 15px;
 }
