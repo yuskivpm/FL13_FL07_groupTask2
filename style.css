@@ -16,10 +16,10 @@ body {
 
 #root {
     display: flex;
-    justify-content: space-between;
     width: 100vw;
     height: 100vh;
     padding: 10px 50px;
+    justify-content: space-between;
 }
 
 #game-panel__header {
@@ -42,18 +42,18 @@ body {
 }
 
 .generate-button {
+    padding: 5px 10px;
+    border: none;
+    border-radius: 6px;
     background-color: #13d5ac;
     color: white;
-    border: none;
-    padding: 5px 10px;
     font-weight: 600;
-    border-radius: 6px;
     cursor: pointer;
 }
 
 #game-panel {
-    height: calc(100vh - 70px);
     width: calc(100vw - 255px);
+    height: calc(100vh - 70px);
 }
 
 #game-panel__desk {
@@ -76,41 +76,41 @@ body {
     z-index: 3;
 }
 
-#additionalFeaturesBlock {
-    width: fit-content;
+aside {
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    width: fit-content;
     height: 100vh;
     padding-bottom: 20px;
+    flex-direction: column;
+    align-items: center;
 }
 #burger {
+    border: none;
+    margin-bottom: 20px;
+    align-self: flex-end;
     font-size: 20px;
     background-color: transparent;
-    border: none;
     cursor: pointer;
-    align-self: flex-end;
-    margin-bottom: 20px;
 }
 
-#additionalFeatures {
+#features {
     display: flex;
-    justify-content: flex-end;
     width: 100%;
     height: calc(100% - 50px);
+    justify-content: flex-end;
     overflow: hidden;
 }
 
-#featurePalette {
+#features__palette {
+    display: flex;
     width: 120px;
     height: 100%;
     padding: 0 10px;
-    display: flex;
     flex-direction: column;
     justify-content: space-between;
 }
 
-.featuresHeader {
+.features__header {
     margin: 15px 0 20px 0;
     text-align: center;
 }
@@ -145,22 +145,22 @@ body {
     }
 }
 
-#featuresInputsInfo.visible {
+#features__settings.visible {
     display: block;
     animation: info 0.5s linear;
 }
 
-#featuresInputsInfo {
+#features__settings {
     display: none;
     width: 170px;
 }
 
-#featuresInputs {
+#settings__inputs {
     display: flex;
     flex-direction: column;
 }
 
-#featuresInputs input {
+#settings__inputs input {
     width: 100%;
     margin: 5px 0 15px 0;
 }

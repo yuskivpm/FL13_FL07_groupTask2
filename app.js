@@ -15,7 +15,7 @@ const realBlockCountInput = document.getElementById('realBlockCount');
 const generatingMapButton = document.querySelector('.generate-button');
 const randomizeBlockCountCheckbox = document.getElementById('randomizeBlockCount');
 const paletteHolder = document.getElementById('palette');
-const settingsMenu = document.getElementById('featuresInputsInfo');
+const settingsMenu = document.getElementById('features__settings');
 const settingsMenuBurger = document.getElementById('burger');
 
 let mainBlock;
