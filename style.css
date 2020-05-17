@@ -126,6 +126,8 @@ body {
 
 #featuresInputsInfo {
     display: none;
+    opacity: 0;
+    transition: all 2s ease 0s;
 }
 
 .featuresInputsInfoBlock {
