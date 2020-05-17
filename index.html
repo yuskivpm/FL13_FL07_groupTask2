@@ -9,26 +9,29 @@
 </head>
 
 <body>
-    <div id="buttons">
-        <label>
-            Border color
-            <input type="color" id="gridColor" value="#00FFFF" onchange="repaintGrid()">
-        </label>
-        <label>
-            Fragment color
-            <input type="color" id="blockColor" value="#FFFFFF" onchange="changeBlockColor()">
-        </label>
-        <label>
-            Max count
-            <input type="number" id="blockCount" value="0" min="10" max="40000">
-        </label>
-        <label>
-            Real fragments count
-            <input type="number" id="realBlockCount" readonly>
-        </label>
-        <input type="button" value="Generate New" onclick="generateMap()">
+    <div id=root>
+        <div id="header">
+            <label>
+                Border color
+                <input type="color" id="gridColor" onchange="repaintGrid()">
+            </label>
+            <label>
+                Fragment color
+                <input type="color" id="blockColor" onchange="changeBlockColor()">
+            </label>
+            <label>
+                Max count
+                <input type="number" id="blockCount" value="100" min="10" max="40000">
+            </label>
+            <label>
+                Real fragments count
+                <input type="number" id="realBlockCount" readonly>
+            </label>
+            <input type="button" value="Generate New" onclick="generateMap()">
+        </div>
+        <div id="palette"></div>
+        <div id="desk"></div>
     </div>
-    <div id="desk"></div>
     <script src="app.js"></script>
 </body>
 
