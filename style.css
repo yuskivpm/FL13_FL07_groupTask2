@@ -144,7 +144,16 @@ body {
 #headerInputs {
     display: flex;
     justify-content: space-between;
-    font-weight: bold;
+    font-weight: 600;
+    font-size: 13px;
+}
+
+#headerInputs input {
+    margin-right: 10px;
+}
+
+#headerInputs span {
+    margin-right: 40px;
 }
 
 .featuresHeader {
