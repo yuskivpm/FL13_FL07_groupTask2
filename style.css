@@ -29,20 +29,15 @@ body {
     margin: auto;
     justify-content: space-between;
     align-items: center;
-}
-
-#settings {
-    display: flex;
-    justify-content: space-between;
     font-weight: 600;
     font-size: 13px;
 }
 
-#settings input {
+#game-panel__header input {
     margin-right: 10px;
 }
 
-#settings span {
+#game-panel__header span {
     margin-right: 40px;
 }
 
