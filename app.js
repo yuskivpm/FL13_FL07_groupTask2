@@ -196,20 +196,15 @@ function hexToRgb(hexColor) {
 }
 
 function rgbStringToRgbArray(rgbString) {
-  rgbString = rgbString.slice(rgbString.indexOf("(")+1, rgbString.indexOf(")"));
-  rgbArr = rgbString.split(", ").map(x => +x);
-  return rgbArr;
-}
-
-function rgbgArrayToRgbString(rgbArr) {
-  return `rgb(${rgbArr[0]}, ${rgbArr[1]}, ${rgbArr[2]})`
+  rgbString = rgbString.slice(rgbString.indexOf('(')+1, rgbString.indexOf(')'));
+  return rgbString.split(', ').map(x => +x);
 }
 
 function rgbToHex(rgbArr) {
-  r = rgbArr[0];
-  g = rgbArr[1];
-  b = rgbArr[2];
-  return "#" + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1);
+  let r = rgbArr[0];
+  let g = rgbArr[1];
+  let b = rgbArr[2];
+  return '#' + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1);
 }
 
 function addToPalette(color) {
@@ -234,17 +229,24 @@ function handlePaletteClick({ target: { style: { backgroundColor } } }) {
 }
 
 function showSettings() {
-  if (settingsMenu.style.display === 'block') {
+  const timeout = 30;
+
+  if (settingsMenu.style.opacity === '1') {
     settingsMenu.style.display = 'none';
     paletteWholeBlock.style.margin = '0';
     additionalFeatures.style.justifyContent = 'flex-end';
     generateMosaicBlock.style.width = 'calc(100vw - 255px)';
+    settingsMenu.style.opacity = '0';
     mainBlock.resizeDesk(getDeskSize());
   } else {
     settingsMenu.style.display = 'block';
+    settingsMenu.style.width = '100%';
     paletteWholeBlock.style.marginRight = '40px';
     additionalFeatures.style.justifyContent = 'space-between';
     generateMosaicBlock.style.width = 'calc(100vw - 450px)';
+    setTimeout(function () {
+      settingsMenu.style.opacity = '1';
+    }, timeout);
     mainBlock.resizeDesk(getDeskSize());
   }
 }
