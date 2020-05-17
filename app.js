@@ -10,6 +10,7 @@ const gridColorPicker = document.getElementById('gridColor');
 const blockCountInput = document.getElementById('blockCount');
 const realBlockCountInput = document.getElementById('realBlockCount');
 const paletteHolder = document.getElementById('palette');
+const randomizeBlockCountCheckbox = document.getElementById('randomizeBlockCount');
 
 let mainBlock;
 let maxPaletteCount;
@@ -108,9 +109,13 @@ function generateMap() {
   deskElement.innerHTML = '';
   mainBlock = new Block(getDeskSize(), '1');
   const usersBlockCount = isNaN(parseInt(blockCountInput.value)) ? MAX_BLOCK_COUNT : parseInt(blockCountInput.value);
-  // const maxBlockCount = Math.min(MAX_BLOCK_COUNT, Math.max(MIN_BLOCK_COUNT, usersBlockCount)) - MIN_BLOCK_COUNT;
-  // let blockCount = Math.floor(Math.random() * maxBlockCount) + MIN_BLOCK_COUNT;
-  let blockCount = Math.min(MAX_BLOCK_COUNT, Math.max(MIN_BLOCK_COUNT, usersBlockCount));
+  let blockCount;
+  if (randomizeBlockCountCheckbox.checked) {
+    const maxBlockCount = Math.min(MAX_BLOCK_COUNT, Math.max(MIN_BLOCK_COUNT, usersBlockCount)) - MIN_BLOCK_COUNT;
+    blockCount = Math.floor(Math.random() * maxBlockCount) + MIN_BLOCK_COUNT;
+  } else {
+    blockCount = Math.min(MAX_BLOCK_COUNT, Math.max(MIN_BLOCK_COUNT, usersBlockCount));
+  }
   let realBlockCount = blockCount;
   let headBlock = mainBlock;
   let tailBlock = mainBlock;
